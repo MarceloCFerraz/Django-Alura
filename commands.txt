@@ -3,3 +3,4 @@ what was done so far:
     - source venv/Scripts/Activate (needs to run runned every time) 
     - django-admin startproject {name} . 
     - python manage.py runserver
+    - pip install python-dotenv
