@@ -4,3 +4,4 @@ what was done so far:
     - django-admin startproject {name} . 
     - python manage.py runserver
     - pip install python-dotenv
+    - python manage.py collectstatic
