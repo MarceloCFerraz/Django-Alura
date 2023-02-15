@@ -54,21 +54,21 @@
                 <div class="cards">
                     <h2 class="cards__titulo">Navegue pela galeria</h2>
                     <ul class="cards__lista">
-                        {% for id, info in cards.items %}
+                        {% if data %} {% for photo in data %}
                         <li class="card">
                             <a href="{% url 'imagem' %}">
                                 <img
                                     class="card__imagem"
-                                    src="{% static '/assets/imagens/galeria/carina-nebula.png' %}"
+                                    src="{% static '/assets/imagens/galeria/'%}{{ photo.photo_reference }}"
                                     alt="foto"
                                 />
                             </a>
                             <span class="card__tag">Estrelas</span>
                             <div class="card__info">
-                                <p class="card__titulo">{{ info.title }}</p>
+                                <p class="card__titulo">{{ photo.title }}</p>
                                 <div class="card__texto">
                                     <p class="card__descricao">
-                                        {{ info.subtitle }}
+                                        {{ photo.subtitle }}
                                     </p>
                                     <span>
                                         <img
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                         </li>
-                        {% endfor %}
+                        {% endfor %} {% else %} {% endif %}
                     </ul>
                 </div>
             </section>
