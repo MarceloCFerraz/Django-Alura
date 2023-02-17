@@ -56,20 +56,32 @@
                     <ul class="cards__lista">
                         {% if data %} {% for photo in data %}
                         <li class="card">
-                            <a href="{% url 'imagem' %}">
+                            <a href="{% url 'imagem' photo.id %}">
+                                <!-- prettier-ignore -->
+                                {% if photo.photo_reference == "" or photo.photo_reference == null %}
                                 <img
                                     class="card__imagem"
-                                    src="{% static '/assets/imagens/galeria/'%}{{ photo.photo_reference }}"
+                                    src="{% static '/assets/imagens/galeria/placeholder.png'%}"
+                                    alt="foto não encontrada"
+                                />
+                                {% else %}
+                                <img
+                                    class="card__imagem"
+                                    src="{{ photo.photo_reference.url }}"
                                     alt="foto"
                                 />
+                                {% endif %}
                             </a>
-                            <span class="card__tag">Estrelas</span>
+                            <span class="card__tag">{{ photo.category }}</span>
                             <div class="card__info">
+                                <div class="card__texto">
+                                    <small class="card__descricao">
+                                        Shot taken {{ photo.date }}
+                                    </small>
+                                </div>
                                 <p class="card__titulo">{{ photo.title }}</p>
                                 <div class="card__texto">
-                                    <p class="card__descricao">
-                                        {{ photo.subtitle }}
-                                    </p>
+                                    <p class="">{{ photo.subtitle }}</p>
                                     <span>
                                         <img
                                             src="{% static '/assets/ícones/1x/favorite_outline.png' %}"
@@ -79,7 +91,11 @@
                                 </div>
                             </div>
                         </li>
-                        {% endfor %} {% else %} {% endif %}
+                        {% endfor %} {% else %}
+                        <p class="card__titulo">
+                            Nenhuma foto foi cadastrada ainda
+                        </p>
+                        % endif %}
                     </ul>
                 </div>
             </section>

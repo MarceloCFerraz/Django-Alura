@@ -1,12 +1,24 @@
+from datetime import datetime
 from django.db import models
 
 # Create your models here.
 
-class Photography(models.Model):
+class Photographies(models.Model):
+
+    CATEGORY_ENUMS = [
+        ("NEBULA", "Nebula"),
+        ("STAR", "Star"),
+        ("GALAXY", "Galaxy"),
+        ("PLANET", "Planea"),
+    ]
+
     title = models.CharField(max_length=100, null=False, blank=False)
     subtitle = models.CharField(max_length=150, null=False, blank=False)
+    category = models.CharField(max_length=100, null=False, blank=False, choices=CATEGORY_ENUMS, default="")
     description = models.TextField(null=False, blank=False)
-    photo_reference = models.CharField(max_length=150, null=False, blank=False)
+    photo_reference = models.ImageField(blank=True, upload_to="photos/%Y/%m/%d/")
+    date = models.DateField(default=datetime.now, blank=False)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Photo [title={self.title}]"
+        return self.title
