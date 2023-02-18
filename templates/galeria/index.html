@@ -4,29 +4,29 @@
     <main class="principal">
         <section class="menu-lateral">
             <nav class="menu-lateral__navegacao">
-                <a href="#"
+                <a href="{% url 'index' %}"
                     ><img
                         src="{% static '/assets/ícones/1x/Home - ativo.png' %}"
                     />
                     Home</a
                 >
-                <a href="#"
+                <a href="{% url 'login' %}"
                     ><img
                         src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"
                     />
-                    Mais vistas</a
+                    Login User</a
                 >
-                <a href="#"
+                <a href="{% url 'register' %}"
                     ><img
                         src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"
                     />
-                    Novas</a
+                    Register New User</a
                 >
-                <a href="#"
+                <a href=""
                     ><img
                         src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"
                     />
-                    Surpreenda-me</a
+                    Logout User</a
                 >
             </nav>
         </section>

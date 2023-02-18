@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path, os
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'galeria.apps.GaleriaConfig'
+    'galeria.apps.GaleriaConfig',
+    'user.apps.UserConfig'
 ]
+
+sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +62,11 @@ ROOT_URLCONF = 'setup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates/galeria")],
+        'DIRS': [
+            os.path.join(BASE_DIR, "templates/partials"),
+            os.path.join(BASE_DIR, "templates/galeria"),
+            os.path.join(BASE_DIR, "templates/user")
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
