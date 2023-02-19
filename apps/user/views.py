@@ -12,7 +12,7 @@ def login(request):
         form = forms.LoginForm(request.POST)
 
         if form.is_valid():
-            email = form["email"].value()
+            email = form["email"].value().strip()
             password = form["password"].value()
 
             user = auth.authenticate(
@@ -40,17 +40,11 @@ def register(request):
         form = forms.RegisterForm(request.POST)
 
         if form.is_valid():
+            email = form["email"].value().strip()
             password = form["password"].value()
-            password_repeat = form["password_repeat"].value()
-
-            if password != password_repeat:
-                messages.error(request, "The informed passwords are not equal")
-                return redirect("register")
-            
-            full_name = form["full_name"].value()
+            full_name = form["full_name"].value() # strip was implemented on forms.py
             first_name = get_first_name(full_name)
             last_name = get_last_name(full_name, first_name)
-            email = form["email"].value()
 
             if User.objects.filter(email=email).exists():
                 messages.error(request, "This e-mail is already registered. Try to log in or create another account")

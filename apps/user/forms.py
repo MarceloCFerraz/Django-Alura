@@ -72,3 +72,20 @@ class RegisterForm(forms.Form):
             }
         )
     )
+
+    def clean_full_name(self):
+        full_name = self.cleaned_data.get('full_name')
+
+        if full_name:
+            full_name = full_name.strip()
+            return full_name
+
+    def clean_password_repeat(self):
+        password = self.cleaned_data.get('password')
+        password_repeat = self.cleaned_data.get('password_repeat')
+
+        if password and password_repeat:
+            if password != password_repeat:
+                raise forms.ValidationError('The typed passwords are not equal')
+            else:
+                return password_repeat
