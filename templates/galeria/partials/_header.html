@@ -1,4 +1,13 @@
-{% load static %}
+{% load static %} {% if messages %}
+<script>
+    {% for message in messages %}
+        {% if message.tags %}
+            alert("{{ message }}")
+        {% endif %}
+    {% endfor %}
+</script>
+{% endif %}
+
 <header class="cabecalho">
     <img
         src="{% static '/assets/logo/Logo(2).png' %}"
@@ -6,6 +15,7 @@
     />
     <div class="cabecalho__busca">
         <div class="busca__fundo">
+            {% if user.is_authenticated %}
             <form action="{% url 'index' %}">
                 <input
                     class="busca__input"
@@ -21,6 +31,7 @@
                     />
                 </button>
             </form>
+            {% endif %}
         </div>
     </div>
 </header>
