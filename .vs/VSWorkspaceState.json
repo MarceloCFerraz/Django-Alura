@@ -1,5 +1,9 @@
 {
-    "ExpandedNodes": ["", "\\galeria"],
-    "SelectedNode": "\\galeria\\models.py",
-    "PreviewInSolutionExplorer": false
+  "ExpandedNodes": [
+    "",
+    "\\apps",
+    "\\apps\\galeria"
+  ],
+  "SelectedNode": "\\apps\\galeria\\models.py",
+  "PreviewInSolutionExplorer": false
 }

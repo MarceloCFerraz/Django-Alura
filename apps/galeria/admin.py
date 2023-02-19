@@ -8,7 +8,7 @@ class ListingPhotographies(admin.ModelAdmin):
     list_display = ("id", "title", "subtitle", "category", "published")
     list_editable = ("published", )
     list_per_page = 10
-    list_filter = ("category", )
+    list_filter = ("category", "user",)
     list_display_links = ("id", "title")
 
     search_fields = ("title", )
